@@ -2,7 +2,14 @@ import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
-import { User } from './entities/user.entity';
+import { TeamsModule } from './teams/teams.module';
+import { MeetingsModule } from './meetings/meetings.module';
+import { AgendasModule } from './agendas/agendas.module';
+import { DecisionsModule } from './decisions/decisions.module';
+import { ActionItemsModule } from './action-items/action-items.module';
+import { ContributionsModule } from './contributions/contributions.module';
+import { RealtimeModule } from './realtime/realtime.module';
+import { ALL_ENTITIES } from './entities';
 
 @Module({
   imports: [
@@ -16,7 +23,7 @@ import { User } from './entities/user.entity';
         username: config.get<string>('DB_USER'),
         password: config.get<string>('DB_PASSWORD'),
         database: config.get<string>('DB_NAME'),
-        entities: [User],
+        entities: ALL_ENTITIES,
         synchronize: config.get<string>('NODE_ENV') !== 'production',
         timezone: '+09:00',
         // 한글 등 멀티바이트 문자 깨짐(???) 방지
@@ -25,6 +32,13 @@ import { User } from './entities/user.entity';
       inject: [ConfigService],
     }),
     AuthModule,
+    TeamsModule,
+    MeetingsModule,
+    AgendasModule,
+    DecisionsModule,
+    ActionItemsModule,
+    ContributionsModule,
+    RealtimeModule,
   ],
 })
 export class AppModule {}
