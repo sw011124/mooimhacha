@@ -6,6 +6,10 @@ import HomePage from "@/pages/home/HomePage";
 import DashboardPage from "@/pages/dashboard/DashboardPage";
 import MeetingLauncher from "@/pages/meeting/MeetingLauncher";
 import ContributionDashboard from "@/pages/meeting/ContributionDashboard";
+import MockContribution from "@/pages/mock/MockContribution";
+import MockOverview from "@/pages/mock/MockOverview";
+import MockTasks from "@/pages/mock/MockTasks";
+import MockReport from "@/pages/mock/MockReport";
 import TermsPage from "@/pages/terms/TermsPage";
 import { useToast } from "@/hooks/useToast";
 
@@ -66,6 +70,11 @@ export default function App() {
           }
         />
         <Route path="/terms" element={<TermsPage />} />
+        {/* 스크린샷/시연용 정적 목업 (인증 불필요) */}
+        <Route path="/mock/contribution" element={<MockContribution />} />
+        <Route path="/mock/overview" element={<MockOverview />} />
+        <Route path="/mock/tasks" element={<MockTasks />} />
+        <Route path="/mock/report" element={<MockReport />} />
         {/* 정의되지 않은 경로는 로그인으로 */}
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
